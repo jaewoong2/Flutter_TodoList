@@ -40,6 +40,16 @@ class _TodoHomeState extends State<TodoHome> {
                   child: Column(
                     children: [
                       TextFormField(
+                        validator: (text) {
+                          if (text == null) {
+                            return '비어 있습니다.';
+                          }
+
+                          if (text == '') {
+                            return '비어 있습니다.';
+                          }
+                          return null;
+                        },
                         controller: textController,
                         onSaved: (value) {
                           setState(() {
