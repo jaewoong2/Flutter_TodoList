@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/model/todo_view_model.dart';
-import 'package:flutter_todolist/view/todo_home_view.dart';
+import 'package:flutter_todolist/ui/todo_appbar_ui.dart';
+import 'package:flutter_todolist/view/todo_create_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -26,7 +27,16 @@ class MyApp extends StatelessWidget {
         create: (context) {
           return TodoViewModel();
         },
-        child: const Scaffold(body: TodoHome()),
+        child: Scaffold(
+          body: const TodoCreateView(),
+          appBar: PreferredSize(
+            preferredSize: Size(
+              MediaQuery.of(context).size.width,
+              59,
+            ),
+            child: const TodoAppBar(),
+          ),
+        ),
       ),
     );
   }
