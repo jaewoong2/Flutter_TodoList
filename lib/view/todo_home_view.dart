@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todolist/model/todo_view_model.dart';
+import 'package:flutter_todolist/model/todolist_view_model.dart';
 import 'package:provider/provider.dart';
 
 class TodoHome extends StatefulWidget {
@@ -12,7 +12,6 @@ class TodoHome extends StatefulWidget {
 class _TodoHomeState extends State<TodoHome> {
   final _formKey = GlobalKey<FormState>();
   final textController = TextEditingController();
-  String _todo = '';
 
   void clearText() {
     textController.clear();
@@ -22,7 +21,7 @@ class _TodoHomeState extends State<TodoHome> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
-      child: Consumer<TodoViewModel>(
+      child: Consumer<TodoListViewModel>(
         builder: (context, provider, child) {
           var todoList = provider.todoList;
 
@@ -44,7 +43,6 @@ class _TodoHomeState extends State<TodoHome> {
                           if (text == null) {
                             return '비어 있습니다.';
                           }
-
                           if (text == '') {
                             return '비어 있습니다.';
                           }
@@ -54,7 +52,6 @@ class _TodoHomeState extends State<TodoHome> {
                         onSaved: (value) {
                           setState(() {
                             if (value == null) return;
-                            _todo = value;
                           });
                         },
                       ),
@@ -64,9 +61,7 @@ class _TodoHomeState extends State<TodoHome> {
                           if (_formKey.currentState!.validate()) {
                             // validation 이 성공하면 폼 저장하기
                             _formKey.currentState!.save();
-                            provider.addtodo(_todo);
                             textController.clear();
-                            _todo = '';
                           }
                         },
                         child: const Text('Submit'),

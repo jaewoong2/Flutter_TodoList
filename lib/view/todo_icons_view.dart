@@ -1,87 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/model/category_model.dart';
+import 'package:flutter_todolist/model/todo_view_model.dart';
+import 'package:flutter_todolist/ui/category_ui.dart' as ui;
+import 'package:flutter_todolist/ui/todo_form_header_ui.dart';
+import 'package:provider/provider.dart';
 
 const double iconSize = 26;
 const double iconPadding = 10;
 
-class TodoIcons extends StatelessWidget {
+List<CategoryModel> categories = [
+  CategoryModel(
+    category: CategoryEnum.workout,
+    icon: Icons.directions_run,
+    name: '운동',
+  ),
+  CategoryModel(
+    category: CategoryEnum.afternoon,
+    icon: Icons.wb_sunny_sharp,
+    name: '오후',
+  ),
+  CategoryModel(
+    category: CategoryEnum.night,
+    icon: Icons.nights_stay,
+    name: '밤',
+  ),
+  CategoryModel(
+    category: CategoryEnum.morning,
+    icon: Icons.alarm,
+    name: '아침',
+  ),
+  CategoryModel(
+    category: CategoryEnum.smallThing,
+    icon: Icons.cleaning_services_rounded,
+    name: '운동',
+  ),
+  CategoryModel(
+    category: CategoryEnum.study,
+    icon: Icons.border_color_outlined,
+    name: '운동',
+  ),
+];
+
+class TodoIcons extends StatefulWidget {
   const TodoIcons({super.key});
+
+  @override
+  State<TodoIcons> createState() => _TodoIconsState();
+}
+
+class _TodoIconsState extends State<TodoIcons> {
+  void onTap(CategoryModel category) {
+    Provider.of<TodoViewModel>(context, listen: false)
+        .setTodo(category: category);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Transform.translate(
-          offset: const Offset(-10, 10),
-          child: const Text(
-            'Icons',
-            style: TextStyle(
-              color: Colors.black12,
-              fontWeight: FontWeight.w600,
-              fontSize: 32,
-            ),
-          ),
-        ),
+        const TodoFormHeader(title: 'Icons'),
         const SizedBox(height: 10),
         Row(
           children: [
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(94, 255, 124, 168),
-                borderRadius: BorderRadius.all(Radius.circular(9)),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(iconPadding),
-                child: Icon(
-                  Icons.access_time_rounded,
-                  size: iconSize,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.black),
-                color: const Color.fromARGB(179, 255, 124, 168),
-                borderRadius: const BorderRadius.all(Radius.circular(9)),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(iconPadding),
-                child: Icon(
-                  Icons.local_drink_sharp,
-                  size: iconSize,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(94, 255, 124, 168),
-                borderRadius: BorderRadius.all(Radius.circular(9)),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(iconPadding),
-                child: Icon(
-                  Icons.link,
-                  size: iconSize,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(94, 255, 124, 168),
-                borderRadius: BorderRadius.all(Radius.circular(9)),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(iconPadding),
-                child: Icon(
-                  Icons.house,
-                  size: iconSize,
-                ),
-              ),
-            ),
+            for (var category in categories)
+              ui.Category(
+                category: category,
+                iconSize: iconSize,
+                onPressed: () {
+                  onTap(category);
+                },
+                isSelected: Provider.of<TodoViewModel>(context, listen: false)
+                        .todo
+                        .category
+                        .category ==
+                    category.category,
+              )
           ],
         ),
       ],

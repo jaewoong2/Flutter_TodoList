@@ -1,88 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/model/todo_view_model.dart';
+import 'package:flutter_todolist/ui/color_ui.dart';
+import 'package:flutter_todolist/ui/todo_form_header_ui.dart';
+import 'package:provider/provider.dart';
 
 const double colorSize = 36;
+const List<Color> colors = [
+  Colors.red,
+  Colors.blue,
+  Colors.green,
+  Colors.greenAccent,
+  Colors.pink,
+];
 
-class TodoColors extends StatelessWidget {
+class TodoColors extends StatefulWidget {
   const TodoColors({super.key});
+
+  @override
+  State<TodoColors> createState() => _TodoColorsState();
+}
+
+class _TodoColorsState extends State<TodoColors> {
+  void onTap(Color? color) {
+    Provider.of<TodoViewModel>(context, listen: false).setTodo(color: color);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Transform.translate(
-          offset: const Offset(-10, 10),
-          child: const Text(
-            'Colors',
-            style: TextStyle(
-              color: Colors.black12,
-              fontWeight: FontWeight.w600,
-              fontSize: 32,
-            ),
-          ),
-        ),
+        const TodoFormHeader(title: "Colors"),
         const SizedBox(height: 10),
         Row(
           children: [
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              child: Container(
-                width: colorSize,
-                height: colorSize,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.red,
-                ),
+            for (var color in colors)
+              ColorUI(
+                onTap: onTap,
+                color: color,
+                colorSize: colorSize,
+                isSelected: color ==
+                    Provider.of<TodoViewModel>(context, listen: false)
+                        .todo
+                        .color,
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              child: Container(
-                width: colorSize,
-                height: colorSize,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              child: Container(
-                width: colorSize,
-                height: colorSize,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.green,
-                  border: Border.all(width: 2, color: Colors.black),
-                ),
-                child: const Icon(
-                  Icons.check_circle_outline_outlined,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              child: Container(
-                width: colorSize,
-                height: colorSize,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 8),
-              child: Container(
-                width: colorSize,
-                height: colorSize,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.pink,
-                ),
-              ),
-            ),
           ],
         ),
       ],
