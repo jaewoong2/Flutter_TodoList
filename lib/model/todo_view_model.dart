@@ -1,57 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/model/category_model.dart';
 import 'package:flutter_todolist/model/todo_model.dart';
 
 class TodoViewModel with ChangeNotifier {
-  //player 중인지를 확인할 값
-  List<TodoModel> _todoList = [];
+  TodoModel _todo = TodoModel(
+    todo: '',
+    isCompleted: false,
+    category: CategoryModel(
+      category: CategoryEnum.morning,
+      name: '',
+      icon: Icons.abc,
+    ),
+    color: Colors.red,
+    schedule: [],
+    id: 0,
+  );
 
-  List<TodoModel> get todoList => _todoList;
+  TodoModel get todo => _todo;
 
-  void toogleCompleted(int selectedId) {
-    List<TodoModel> copyTodoList = [..._todoList];
-
-    TodoModel selectedTodo = copyTodoList[
-        _todoList.indexWhere((element) => element.id == selectedId)];
-    selectedTodo.isCompleted = !selectedTodo.isCompleted;
-
-    _todoList = copyTodoList;
-
-    notifyListeners();
+  init() {
+    _todo = TodoModel(
+      todo: '',
+      isCompleted: false,
+      category: CategoryModel(
+        category: CategoryEnum.morning,
+        name: '',
+        icon: Icons.abc,
+      ),
+      color: Colors.red,
+      schedule: [],
+      id: 0,
+    );
   }
 
-  void addtodo(String todo) {
-    _todoList = [
-      ..._todoList,
-      TodoModel(todo: todo, isCompleted: false, id: getLastId() + 1)
-    ];
-    notifyListeners();
-  }
-
-  void removeTodo(int selectedId) {
-    List<TodoModel> copyTodoList = [..._todoList];
-
-    TodoModel selectedTodo = copyTodoList[
-        _todoList.indexWhere((element) => element.id == selectedId)];
-    copyTodoList.remove(selectedTodo);
-
-    _todoList = copyTodoList;
-    notifyListeners();
-  }
-
-  void updateTodo({required String todo, required int selectedId}) {
-    List<TodoModel> copyTodoList = [..._todoList];
-
-    TodoModel selectedTodo = copyTodoList[
-        _todoList.indexWhere((element) => element.id == selectedId)];
-    selectedTodo.todo = todo;
-
-    _todoList = copyTodoList;
-    notifyListeners();
-  }
-
-  int getLastId() {
-    if (todoList.isEmpty) return 0;
-
-    return _todoList[_todoList.length - 1].id;
+  setTodo({
+    String? todo,
+    bool? isCompleted,
+    CategoryModel? category,
+    Color? color,
+    List<String>? schedule,
+    int? id,
+  }) {
+    if (todo != null) {
+      _todo.todo = todo;
+    }
+    if (isCompleted != null) {
+      _todo.isCompleted = isCompleted;
+    }
+    if (category != null) {
+      _todo.category = category;
+    }
+    if (color != null) {
+      _todo.color = color;
+    }
+    if (schedule != null) {
+      _todo.schedule = schedule;
+    }
+    if (id != null) {
+      _todo.id = id;
+    }
   }
 }
