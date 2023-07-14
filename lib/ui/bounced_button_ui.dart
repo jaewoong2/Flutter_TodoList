@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class BouncedButton extends StatefulWidget {
   final Widget child;
+  final void Function()? onTap;
 
-  const BouncedButton({super.key, required this.child});
+  const BouncedButton({super.key, required this.child, this.onTap});
 
   @override
   State<BouncedButton> createState() => _BouncedButtonState();
@@ -52,6 +53,7 @@ class _BouncedButtonState extends State<BouncedButton>
     return GestureDetector(
       onTapDown: _tapDown,
       onTapUp: _tapUp,
+      onTap: widget.onTap,
       child: Transform.scale(
         scale: _scale,
         child: widget.child,
