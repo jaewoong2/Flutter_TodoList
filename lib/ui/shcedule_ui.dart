@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/ui/bounced_button_ui.dart';
 
 class ScheduleUI extends StatelessWidget {
   final String schedule;
@@ -17,7 +18,7 @@ class ScheduleUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 8),
-      child: InkWell(
+      child: BouncedButton(
         onTap: () {
           onTap(schedule);
         },
@@ -29,7 +30,12 @@ class ScheduleUI extends StatelessWidget {
                 ? const Color.fromARGB(206, 255, 124, 168)
                 : const Color.fromARGB(94, 255, 124, 168),
             shape: BoxShape.circle,
-            border: isSelected ? Border.all(width: 2) : null,
+            border: isSelected
+                ? Border.all(width: 2)
+                : Border.all(
+                    width: 2,
+                    color: Colors.transparent,
+                  ),
           ),
           child: Text(
             textAlign: TextAlign.center,

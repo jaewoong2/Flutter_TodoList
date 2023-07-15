@@ -49,8 +49,7 @@ class _BouncedButtonState extends State<BouncedButton>
   @override
   Widget build(BuildContext context) {
     _scale = (1 - _controller.value);
-
-    return GestureDetector(
+    return InkWell(
       onTapDown: _tapDown,
       onTapUp: _tapUp,
       onTap: widget.onTap,

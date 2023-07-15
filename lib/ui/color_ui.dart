@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/ui/bounced_button_ui.dart';
 
 class ColorUI extends StatelessWidget {
   final double? colorSize;
@@ -19,7 +20,7 @@ class ColorUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
-      child: InkWell(
+      child: BouncedButton(
         onTap: () {
           onTap(color);
         },
@@ -34,7 +35,10 @@ class ColorUI extends StatelessWidget {
                     width: 2,
                     color: Colors.black,
                   )
-                : null,
+                : Border.all(
+                    width: 2,
+                    color: Colors.transparent,
+                  ),
           ),
           child: isSelected
               ? const Icon(
