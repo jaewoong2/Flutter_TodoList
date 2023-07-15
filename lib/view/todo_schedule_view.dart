@@ -46,6 +46,8 @@ class _TodoScheduleState extends State<TodoSchedule> {
         const TodoFormHeader(title: "Schedule"),
         const SizedBox(height: 10),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             for (var schedule in schedules)
               ScheduleUI(

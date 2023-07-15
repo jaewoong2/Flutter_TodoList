@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todolist/model/todo_view_model.dart';
 import 'package:flutter_todolist/model/todolist_view_model.dart';
 import 'package:flutter_todolist/ui/todo_appbar_ui.dart';
-import 'package:flutter_todolist/view/todo_create_view.dart';
+import 'package:flutter_todolist/view/todo_home_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       home: Scaffold(
-        body: const TodoCreateView(),
+        body: const TodoHome(),
         appBar: PreferredSize(
           preferredSize: Size(
             MediaQuery.of(context).size.width,
