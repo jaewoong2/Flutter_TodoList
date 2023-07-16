@@ -1,90 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/ui/bounced_button_ui.dart';
+import 'package:flutter_todolist/ui/todo_appbar_ui.dart';
 
 class TodoHome extends StatelessWidget {
-  const TodoHome({super.key});
+  final Widget? child;
+  final bool isBottomNavigationBar;
+
+  const TodoHome({
+    super.key,
+    required this.child,
+    this.isBottomNavigationBar = true,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
+    return Scaffold(
+      body: child,
+      appBar: PreferredSize(
+        preferredSize: Size(
+          MediaQuery.of(context).size.width,
+          59,
+        ),
+        child: const TodoAppBar(),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "good moring bro",
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 32,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
-            decoration: BoxDecoration(
-              color: Colors.pink.shade100,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Icon(
-                      Icons.emoji_emotions_outlined,
-                      size: 32,
-                    ),
-                    IconButton(
-                      focusColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.clear,
+      bottomNavigationBar: isBottomNavigationBar
+          ? Container(
+              margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 40),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(
+                  width: 2,
+                  color: Colors.black,
+                ),
+                color: Colors.pinkAccent.shade100,
+                boxShadow: const [
+                  BoxShadow(color: Colors.black, offset: Offset(0, 4))
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BouncedButton(
+                    onTap: () {
+                      if (ModalRoute.of(context)?.settings.name == '/') {
+                        return;
+                      }
+                      Navigator.pushNamed(context, '/');
+                    },
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 25, horizontal: 40),
+                      child: Icon(
+                        Icons.home_outlined,
                         size: 32,
                       ),
                     ),
-                  ],
-                ),
-                const Text(
-                  "Great Job!",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24,
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'last week was your best week, you can do it again!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 17,
+                  BouncedButton(
+                    onTap: () {
+                      if (ModalRoute.of(context)?.settings.name == '/create') {
+                        return;
+                      }
+                      Navigator.pushNamed(context, '/create');
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.black,
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        size: 32,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(height: 20),
-          const Column(
-            children: [
-              Text(
-                "Habbitzs",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                ),
-              )
-            ],
-          )
-        ],
-      ),
+                  BouncedButton(
+                    onTap: () {},
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 25, horizontal: 40),
+                      child: Icon(
+                        Icons.legend_toggle_outlined,
+                        size: 32,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : null,
     );
   }
 }
