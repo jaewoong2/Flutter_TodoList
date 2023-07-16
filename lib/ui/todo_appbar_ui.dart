@@ -8,6 +8,8 @@ class TodoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leadingWidth: 0,
+      leading: const SizedBox(width: 0),
       elevation: 0,
       backgroundColor: const Color(0xffffffff),
       title: Row(

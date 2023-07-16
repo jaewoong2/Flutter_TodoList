@@ -53,6 +53,10 @@ class _BouncedButtonState extends State<BouncedButton>
       onTapDown: _tapDown,
       onTapUp: _tapUp,
       onTap: widget.onTap,
+      highlightColor: Colors.transparent,
+      focusColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      hoverColor: Colors.transparent,
       child: Transform.scale(
         scale: _scale,
         child: widget.child,
