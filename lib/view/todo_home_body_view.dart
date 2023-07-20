@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/model/todolist_view_model.dart';
+import 'package:flutter_todolist/ui/todo_ui.dart';
+import 'package:provider/provider.dart';
 
 class TodoHomeBody extends StatelessWidget {
   const TodoHomeBody({super.key});
@@ -72,109 +75,32 @@ class TodoHomeBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Habbitzs",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10, bottom: 15),
-                width: MediaQuery.of(context).size.width,
-                height: 2,
-                decoration: const BoxDecoration(
-                  color: Colors.black,
-                ),
-                child: const Row(),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Consumer<TodoListViewModel>(
+            builder: (context, provider, child) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 25),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(500)),
-                          border: Border.all(
-                            color: Colors.amber,
-                            width: 3,
-                          ),
-                          color: Colors.yellow,
-                        ),
-                        child: const Icon(
-                          Icons.smart_toy_outlined,
-                          size: 32,
-                        ),
-                      ),
-                      const Text(
-                        "룰루",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ],
-                  ),
                   const Text(
-                    "1 day ing",
+                    "Habbitzs",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 24,
                       fontWeight: FontWeight.w600,
                     ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.only(right: 25),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(500)),
-                          border: Border.all(
-                            color: Colors.green,
-                            width: 3,
-                          ),
-                          color: Colors.greenAccent,
-                        ),
-                        child: const Icon(
-                          Icons.local_drink_rounded,
-                          size: 32,
-                        ),
-                      ),
-                      const Text(
-                        "매일 물 1L 마시기",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ],
                   ),
-                  const Text(
-                    "4 day ing",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                  const Divider(
+                    color: Colors.black,
+                    thickness: 2,
+                  ),
+                  for (var todo in provider.todoList)
+                    Todo(
+                      icon: todo.category.icon,
+                      iconBgColor: todo.color,
+                      todo: todo.todo,
+                      day: '1',
                     ),
-                  )
                 ],
-              )
-            ],
+              );
+            },
           ),
         ],
       ),
