@@ -24,7 +24,7 @@ class Todo extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 margin: const EdgeInsets.only(right: 25),
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(500)),
@@ -36,7 +36,7 @@ class Todo extends StatelessWidget {
                 ),
                 child: Icon(
                   icon,
-                  size: 32,
+                  size: 24,
                 ),
               ),
               Text(

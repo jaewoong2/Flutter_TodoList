@@ -27,19 +27,18 @@ class _TodoCreateViewState extends State<TodoCreateView> {
           builder: (context, provider, child) {
             return Form(
               key: provider.formKey,
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Habits(),
-                  const SizedBox(height: 20),
-                  const TodoIcons(),
-                  const SizedBox(height: 20),
-                  const TodoColors(),
-                  const SizedBox(height: 20),
-                  const TodoSchedule(),
-                  const SizedBox(height: 20),
-                  const TodoPlus(),
-                  for (var todo in provider.todoList) Text(todo.todo),
+                  Habits(),
+                  SizedBox(height: 20),
+                  TodoIcons(),
+                  SizedBox(height: 20),
+                  TodoColors(),
+                  SizedBox(height: 20),
+                  TodoSchedule(),
+                  SizedBox(height: 20),
+                  TodoPlus(),
                 ],
               ),
             );
