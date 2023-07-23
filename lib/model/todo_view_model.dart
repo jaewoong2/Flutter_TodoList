@@ -14,6 +14,7 @@ class TodoViewModel with ChangeNotifier {
     color: Colors.red,
     schedule: [],
     id: 0,
+    createdAt: DateTime.now(),
   );
 
   TodoModel get todo => _todo;
@@ -30,17 +31,18 @@ class TodoViewModel with ChangeNotifier {
       color: Colors.red,
       schedule: [],
       id: 0,
+      createdAt: DateTime.now(),
     );
   }
 
-  setTodo({
-    String? todo,
-    bool? isCompleted,
-    CategoryModel? category,
-    Color? color,
-    List<String>? schedule,
-    int? id,
-  }) {
+  setTodo(
+      {String? todo,
+      bool? isCompleted,
+      CategoryModel? category,
+      Color? color,
+      List<String>? schedule,
+      int? id,
+      DateTime? createdAt}) {
     if (todo != null) {
       _todo.todo = todo;
     }
@@ -58,6 +60,9 @@ class TodoViewModel with ChangeNotifier {
     }
     if (id != null) {
       _todo.id = id;
+    }
+    if (createdAt != null) {
+      _todo.createdAt = createdAt;
     }
   }
 }

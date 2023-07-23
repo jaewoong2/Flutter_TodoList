@@ -96,7 +96,10 @@ class TodoHomeBody extends StatelessWidget {
                       icon: todo.category.icon,
                       iconBgColor: todo.color,
                       todo: todo.todo,
-                      day: '1',
+                      day: DateTime.now()
+                          .difference(todo.createdAt)
+                          .inDays
+                          .toString(),
                     ),
                 ],
               );

@@ -8,6 +8,7 @@ class TodoModel {
   late CategoryModel category;
   late Color color;
   late List<String> schedule;
+  late DateTime createdAt;
 
   late int id = 0;
 
@@ -18,6 +19,7 @@ class TodoModel {
     required this.category,
     required this.color,
     required this.schedule,
+    required this.createdAt,
   });
 
   TodoModel.fromTodo(TodoModel newTodo)
@@ -25,5 +27,6 @@ class TodoModel {
         todo = newTodo.todo,
         category = newTodo.category,
         color = newTodo.color,
-        schedule = newTodo.schedule;
+        schedule = newTodo.schedule,
+        createdAt = newTodo.createdAt;
 }
