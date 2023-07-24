@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/model/todolist_view_model.dart';
+import 'package:flutter_todolist/view/alert_message_view.dart';
 import 'package:flutter_todolist/ui/todo_ui.dart';
 import 'package:provider/provider.dart';
 
@@ -26,52 +27,21 @@ class TodoHomeBody extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Container(
-            padding: const EdgeInsets.only(left: 15, right: 15, bottom: 20),
-            decoration: BoxDecoration(
-              color: Colors.pink.shade100,
-              borderRadius: BorderRadius.circular(12),
+          const AlertMessageUI(
+            isShowMessage: true,
+            title: Text(
+              "굿-잡!",
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 24,
+              ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Icon(
-                      Icons.emoji_emotions_outlined,
-                      size: 32,
-                    ),
-                    IconButton(
-                      focusColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.clear,
-                        size: 32,
-                      ),
-                    ),
-                  ],
-                ),
-                const Text(
-                  "Great Job!",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'last week was your best week, you can do it again!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 17,
-                  ),
-                )
-              ],
+            description: Text(
+              'last week was your best week, you can do it again!',
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontSize: 17,
+              ),
             ),
           ),
           const SizedBox(height: 20),
