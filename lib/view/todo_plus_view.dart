@@ -32,6 +32,7 @@ class TodoPlus extends StatelessWidget {
                 todoList.addtodo(TodoModel.fromTodo(todo.todo));
                 todo.init();
                 formKey.currentState!.save();
+                Navigator.popUntil(context, (route) => false);
                 Navigator.pushNamed(context, '/');
               }
             },
