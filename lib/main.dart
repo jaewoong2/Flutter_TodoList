@@ -4,6 +4,7 @@ import 'package:flutter_todolist/model/todolist_view_model.dart';
 import 'package:flutter_todolist/view/todo_create_view.dart';
 import 'package:flutter_todolist/view/todo_home_body_view.dart';
 import 'package:flutter_todolist/view/todo_home_view.dart';
+import 'package:flutter_todolist/view/todo_setting_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
         '/create': (context) => const TodoHome(
               isBottomNavigationBar: false,
               child: TodoCreateView(),
+            ),
+        '/setting': (context) => const TodoHome(
+              isBottomNavigationBar: false,
+              child: TodoSetting(),
             ),
       },
       title: 'Flutter Demo',

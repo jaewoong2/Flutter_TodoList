@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todolist/model/todo_model.dart';
 import 'package:flutter_todolist/model/todo_view_model.dart';
 import 'package:flutter_todolist/model/todolist_view_model.dart';
 import 'package:flutter_todolist/ui/bounced_button_ui.dart';
@@ -27,13 +26,9 @@ class TodoPlus extends StatelessWidget {
               var todo = Provider.of<TodoViewModel>(context, listen: false);
 
               var formKey = todoList.formKey;
-
               if (formKey.currentState!.validate()) {
-                todoList.addtodo(TodoModel.fromTodo(todo.todo));
-                todo.init();
                 formKey.currentState!.save();
-                Navigator.popUntil(context, (route) => false);
-                Navigator.pushNamed(context, '/');
+                Navigator.pushNamed(context, '/setting');
               }
             },
             child: Container(
